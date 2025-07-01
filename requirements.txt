@@ -1,0 +1,9 @@
+streamlit
+pandas
+numpy
+os
+seaborn
+datetime
+matplotlib.dates
+pathlib
+io
