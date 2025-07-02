@@ -5,8 +5,8 @@ from procesamiento import *
 
 st.title("Procesador de validaciones")
 
-uploaded_file = st.file_uploader("Sube el archivo aquí", type="csv")
 cant_viajes=st.text_input("Indicar el filtro de validaciones por tarjeta en un día",key=6)
+uploaded_file = st.file_uploader("Sube el archivo aquí", type="csv")
 df_validaciones,name_archivo=importar_csv(uploaded_file)
 
 if df_validaciones is not None:
