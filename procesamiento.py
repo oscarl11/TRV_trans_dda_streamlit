@@ -19,7 +19,7 @@ def filtr_tarjeta(df_fec_filtr):
     df_filtr_tarj=df_fec_filtr[df_fec_filtr["TARJETA"].isin(filtr_tarj["TARJETA"])]
     return df_filtr_tarj
 
-def procesamiento(df_validaciones):
+def procesamiento(df_validaciones,cant_viajes):
     # 1. Copia del DataFrame original
     df_trabajo_2 = df_validaciones.copy()
 
@@ -27,9 +27,9 @@ def procesamiento(df_validaciones):
     df_trabajo_2 = df_trabajo_2.dropna(subset=["FECHA", "TIPO_VALIDACION", "RUTA"])
     df_trabajo_2["FECHA"] = pd.to_datetime(df_trabajo_2["FECHA"])
 
-    # 3. Tarjetas con menos de 20 validaciones
+    # 3. Tarjetas con menos de n validaciones
     conteo_tarjetas = df_trabajo_2["TARJETA"].value_counts()
-    tarjetas_menor_20 = conteo_tarjetas[conteo_tarjetas < 6].index
+    tarjetas_menor_20 = conteo_tarjetas[conteo_tarjetas < cant_viajes].index
 
     # 4. Filtrar y ordenar
     df_filtrado_2 = df_trabajo_2[df_trabajo_2["TARJETA"].isin(tarjetas_menor_20)]
